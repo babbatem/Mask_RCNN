@@ -1,13 +1,9 @@
 import sys
 
-# Import PretrainedLoader from the Mask_RCNN directory
-# TODO: make this work more generally
-MASKRCNN_DIR = '/Users/abba/projects/segmentation/Mask_RCNN'
-sys.path.append(MASKRCNN_DIR)
-from PretrainedLoader import get_pretrained_model
+from mrcnn import PretrainedLoader
 
 # instantiate COCO-pretrained model
-model, class_names = get_pretrained_model()
+model, class_names = PretrainedLoader.get_pretrained_model()
 
 # test with provided images!
 import cv2

@@ -10,7 +10,7 @@ This is a fork of [Matterport's Mask R-CNN implementation](https://github.com/ma
    ```
 3. Optional: Run setup from the repository root directory
     ```bash
-    python3 setup.py install
+    python setup.py install
     ```
 3. Download pre-trained COCO weights (mask_rcnn_coco.h5) from the [releases page](https://github.com/matterport/Mask_RCNN/releases), place it in the root directory of this package.
 

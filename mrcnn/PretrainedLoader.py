@@ -3,7 +3,7 @@ import mrcnn.model as modellib
 from mrcnn.config import Config
 
 MODEL_DIR = "logs"
-COCO_MODEL_PATH = "mask_rcnn_coco.h5"
+COCO_MODEL_PATH = "/home/abba/magic_ws/src/Mask_RCNN/mask_rcnn_coco.h5"
 
 # I had trouble importing this so I just copied it from samples/coco/coco.py
 class CocoConfig(Config):
