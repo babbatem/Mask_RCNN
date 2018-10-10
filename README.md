@@ -14,7 +14,7 @@ This is a fork of [Matterport's Mask R-CNN implementation](https://github.com/ma
     ```
 3. Download pre-trained COCO weights (mask_rcnn_coco.h5) from the [releases page](https://github.com/matterport/Mask_RCNN/releases), place it in the root directory of this package.
 
-4. Execute '''python pretrained_test.py''' with a python2 interpreter! This program uses PretrainedLoader to construct and load a model, then evaluates it on the images provided with the package.
+4. Execute ```python pretrained_test.py``` with a python2 interpreter! This program uses PretrainedLoader to construct and load a model, then evaluates it on the images provided with the package.
 
 To include this in your project, ```import PretrainedLoader``` as in pretrained_test.py.
 
