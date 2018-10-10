@@ -1068,7 +1068,7 @@ def rpn_bbox_loss_graph(config, target_bbox, rpn_match, rpn_bbox):
                                    config.IMAGES_PER_GPU)
 
     loss = smooth_l1_loss(target_bbox, rpn_bbox)
-    
+
     loss = K.switch(tf.size(loss) > 0, K.mean(loss), tf.constant(0.0))
     return loss
 
@@ -2444,9 +2444,8 @@ class MaskRCNN():
         scores = detections[:N, 5]
         masks = mrcnn_mask[np.arange(N), :, :, class_ids]
 
-        # Translate normalized coordinates in the resized image to pixel
-        # coordinates in the original image before resizing
         window = utils.norm_boxes(window, image_shape[:2])
+        
         wy1, wx1, wy2, wx2 = window
         shift = np.array([wy1, wx1, wy1, wx1])
         wh = wy2 - wy1  # window height

@@ -17,7 +17,7 @@ import scipy
 import skimage.color
 import skimage.io
 import skimage.transform
-import urllib.request
+# import urllib.request
 import shutil
 import warnings
 from distutils.version import LooseVersion
@@ -100,7 +100,7 @@ def compute_overlaps_masks(masks1, masks2):
     """Computes IoU overlaps between two sets of masks.
     masks1, masks2: [Height, Width, instances]
     """
-    
+
     # If either set of masks is empty return empty result
     if masks1.shape[0] == 0 or masks2.shape[0] == 0:
         return np.zeros((masks1.shape[0], masks2.shape[-1]))
@@ -430,7 +430,7 @@ def resize_image(image, min_dim=None, max_dim=None, min_scale=None, mode="square
     # Scale?
     if min_dim:
         # Scale up but not down
-        scale = max(1, min_dim / min(h, w))
+        scale = max(1, float(min_dim) / float(min(h, w)))
     if min_scale and scale < min_scale:
         scale = min_scale
 
@@ -438,11 +438,11 @@ def resize_image(image, min_dim=None, max_dim=None, min_scale=None, mode="square
     if max_dim and mode == "square":
         image_max = max(h, w)
         if round(image_max * scale) > max_dim:
-            scale = max_dim / image_max
+            scale = float(max_dim) / float(image_max)
 
     # Resize image using bilinear interpolation
     if scale != 1:
-        image = resize(image, (round(h * scale), round(w * scale)),
+        image = resize(image, (int(round(h * scale)), int(round(w * scale))),
                        preserve_range=True)
 
     # Need padding or cropping?
@@ -755,7 +755,7 @@ def compute_ap_range(gt_box, gt_class_id, gt_mask,
     """Compute AP over a range or IoU thresholds. Default range is 0.5-0.95."""
     # Default is 0.5 to 0.95 with increments of 0.05
     iou_thresholds = iou_thresholds or np.arange(0.5, 1.0, 0.05)
-    
+
     # Compute AP over range of IoU thresholds
     AP = []
     for iou_threshold in iou_thresholds:
@@ -860,7 +860,7 @@ def norm_boxes(boxes, shape):
         [N, (y1, x1, y2, x2)] in normalized coordinates
     """
     h, w = shape
-    scale = np.array([h - 1, w - 1, h - 1, w - 1])
+    scale = np.array([h - 1, w - 1, h - 1, w - 1]).astype(np.float32)
     shift = np.array([0, 0, 1, 1])
     return np.divide((boxes - shift), scale).astype(np.float32)
 
