@@ -4,8 +4,7 @@ import sys
 # TODO: make this work more generally
 MASKRCNN_DIR = '/Users/abba/projects/segmentation/Mask_RCNN'
 sys.path.append(MASKRCNN_DIR)
-import PretrainedLoader
-# import get_pretrained_model
+from PretrainedLoader import get_pretrained_model
 
 # instantiate COCO-pretrained model
 model, class_names = get_pretrained_model()
